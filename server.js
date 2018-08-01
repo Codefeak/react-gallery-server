@@ -61,7 +61,7 @@ const User = mongoose.model('User', schema);
 const Informations = mongoose.model('Informations', schema1);
 
 
-app.post('/api', (req,res)=>{ 
+app.get('/api', (req,res)=>{ 
     Informations.find({},(err,info)=>{
         if(err)console.log(err);
         return (res.json(info));

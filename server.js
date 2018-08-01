@@ -22,17 +22,48 @@ const schema1 = {
     firstName:{
         type:String,
     },
-    password:{
+    lastName:{
+        type:String,
+    },
+    title:{
+        type:String,
+    },
+    nationality:{
+        type:String,
+    },
+    src:{
+        type:String,
+    },
+    alt:{
+        type:String,
+    },
+    skills:{
+        type:Array,
+    },
+    whySofterDeveloper:{
+        type:String,
+    },
+    longTermVision:{
+        type:String,
+    },
+    motivatesMe:{
+        type:String,
+    },
+    favoriteQuote:{
+        type:String,
+    },
+    joinedOn:{
         type:String,
     }
 }
 
 const User = mongoose.model('User', schema);
+const Information = mongoose.model('Information', schema1);
 
 
-// app.get('/', (req,res)=>{  
-//     res.redirect('https://react-nodeexpress-gallery.herokuapp.com:3000/');
-// });
+app.post('/api', (req,res)=>{ 
+    console.log(Information);
+});
 
 app.post('/login', (req,res)=>{
     console.log('a');

@@ -4,7 +4,7 @@ const mongoose = require( 'mongoose' );
 const cors = require('cors');
 const port = process.env.PORT || 5000;
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://ProblemChild:bzz4uu8eDU@ig001-nt7pi.mongodb.net/UserList", {useNewUrlParser:true})
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://ProblemChild:bzz4uu8eDU@ig001-nt7pi.mongodb.net/UserList", {useNewUrlParser:true});
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -58,19 +58,20 @@ const schema1 = {
 }
 
 const User = mongoose.model('User', schema);
-const Information = mongoose.model('Information', schema1);
+const Informations = mongoose.model('Informations', schema1);
 
 
 app.post('/api', (req,res)=>{ 
-    console.log(Information);
+    Informations.find({},(err,info)=>{
+        if(err)console.log(err);
+        return (res.json(info));
+    })
 });
 
 app.post('/login', (req,res)=>{
-    console.log('a');
     User.find({username:req.body.username}, (err,user)=>{
         if(err)console.log(err);
         user.map(item=>{
-            console.log(item);
             if(item.password === req.body.password){
                 console.log(mongoose);
                 return (res.json(item));

@@ -6,6 +6,7 @@ const port = process.env.PORT || 5000;
 mongoose.connect (process.env.MONGODB_URI || "mongodb+srv://ProblemChild:bzz4uu8eDU@ig001-nt7pi.mongodb.net/UserList", {useNewUrlParser:true})
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+app.set('client', express.static('https://react-nodeexpress-gallery.herokuapp.com:3000'));
 
 const schema1 = {
     username:{

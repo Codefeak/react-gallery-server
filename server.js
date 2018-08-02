@@ -66,7 +66,7 @@ app.get('/api', (req,res)=>{
         if(err)console.log(err);
         return (res.json(info));
     })
-});
+}); 
 
 app.post('/login', (req,res)=>{
     User.find({username:req.body.username}, (err,user)=>{
@@ -80,6 +80,9 @@ app.post('/login', (req,res)=>{
     });
 });
 
+app.post('/login/addNew', (req,res)=>{
+    console.log(req.body)
+})
 
 
 app.listen(port, ()=>{

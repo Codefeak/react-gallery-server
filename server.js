@@ -81,7 +81,8 @@ app.post('/login', (req,res)=>{
 });
 
 app.post('/login/addNew', (req,res)=>{
-    console.log(req.body)
+    Informations.insertOne(req.body)
+    return(res.json(Informations));
 })
 
 

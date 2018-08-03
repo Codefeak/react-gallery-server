@@ -92,10 +92,11 @@ app.post('/login/addNew', (req,res)=>{
 
 app.delete('/login/delete', (req,res)=>{
     console.log('body', req.body);
-    
-    Informations.deleteOne({ _id:req.body._id }, (err, user)=>{
-        if(err)console.log('err', err);
-        })
+    const tmp = req.body.map(item=>{
+        Informations.deleteOne({ _id:item._id }, (err, user)=>{
+            if(err)console.log('err', err);
+            })
+    })
     Informations.find({}, (err,users)=>{
         return(res.json(users));
         })

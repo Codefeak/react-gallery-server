@@ -87,7 +87,7 @@ app.post('/login/addNew', (req,res)=>{
         console.log('inserted',req.body);
     });
     Informations.find({}, (err,users)=>{
-        console.log(users);
+        return(res.json(users));
     })
 })
 

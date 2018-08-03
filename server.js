@@ -92,6 +92,7 @@ app.post('/login/addNew', (req,res)=>{
 
 app.delete('/login/delete', (req,res)=>{
     Informations.findOneAndRemove({}, (err,user)=>{
+        if(err){console.log(err);}
         user.map(item=>{
             if(item._id === req.body._id){
                 console.log('item', item);

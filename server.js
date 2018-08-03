@@ -95,7 +95,7 @@ app.delete('/login/delete', (req,res)=>{
             if(err)console.log('err', err);
         })
         Informations.find({}, (err,users)=>{
-            console.log(users)
+            console.log(informations)
             return(res.json(users));
         })
         })

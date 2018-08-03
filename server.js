@@ -90,6 +90,13 @@ app.post('/login/addNew', (req,res)=>{
     })
 })
 
+app.delete('/login/delete', (req,res)=>{
+    Informations.findOneAndRemove({_id:req.body.id}, (err, user)=>{
+        if(err)console.log(err);
+            return(res.json(user));
+        })
+    })
+
 
 app.listen(port, ()=>{
     console.log(`Listening to port ${port}`);

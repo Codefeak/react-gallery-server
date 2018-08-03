@@ -94,10 +94,9 @@ app.delete('/login/delete', (req,res,next)=>{
         Informations.deleteOne({ _id:item._id }, (err, user)=>{
             if(err)console.log('err', err);
         })
-        next();
+        // next();
         })
         Informations.find({}, (err,users)=>{
-            console.log(users)
             return(res.json(users));
         })
     })

@@ -83,7 +83,6 @@ app.post('/login', (req,res)=>{
 app.post('/login/addNew', (req,res)=>{
     Informations.create(req.body, (err,user)=>{
         if(err)console.log('err', err);
-        console.log('inserted',req.body);
     });
     Informations.find({}, (err,users)=>{
         return(res.json(users));
@@ -91,14 +90,14 @@ app.post('/login/addNew', (req,res)=>{
 })
 
 app.delete('/login/delete', (req,res)=>{
-    console.log('body', req.body);
     const tmp = req.body.map(item=>{
         Informations.deleteOne({ _id:item._id }, (err, user)=>{
             if(err)console.log('err', err);
-            })
-            Informations.find({}, (err,users)=>{
-                return(res.json(users));
-            })
+        })
+        Informations.find({}, (err,users)=>{
+            console.log(users)
+            return(res.json(users));
+        })
         })
     
     })

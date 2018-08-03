@@ -81,13 +81,14 @@ app.post('/login', (req,res)=>{
 });
 
 app.post('/login/addNew', (req,res)=>{
-    Information.insertMany(req.body, (err,user)=>{
-        if(err)console.log('err', err);
-        console.log('inserted',req.body);
-    });
-    Informations.find({}, (err,users)=>{
-        console.log(users);
-    })
+    console.log('inserted',req.body);
+    // Information.insertMany(req.body, (err,user)=>{
+    //     if(err)console.log('err', err);
+    //     console.log('inserted',req.body);
+    // });
+    // Informations.find({}, (err,users)=>{
+    //     console.log(users);
+    // })
 })
 
 

@@ -94,8 +94,8 @@ app.delete('/login/delete', (req,res)=>{
     Informations.findOneAndRemove({}, (err,user)=>{
         if(err){console.log(err);}
         user.map(item=>{
+            console.log('item', item);
             if(item._id === req.body._id){
-                console.log('item', item);
                 return item;
             }
         })

@@ -91,7 +91,7 @@ app.post('/login/addNew', (req,res)=>{
 })
 
 app.delete('/login/delete', (req,res)=>{
-    Informations.find({_id:req.body._id}, (err,user)=>{
+    Informations.find({_id:req.body.firstName}, (err,user)=>{
         console.log("user", user);
     })
     console.log('body', req.body);

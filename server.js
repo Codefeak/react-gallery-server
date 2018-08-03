@@ -81,8 +81,13 @@ app.post('/login', (req,res)=>{
 });
 
 app.post('/login/addNew', (req,res)=>{
-    Informations.insertOne(req.body)
-    return(res.json(Informations));
+    Information.insertMany(req.body, (err,user)=>{
+        if(err)console.log('err', err);
+        console.log('inserted',req.body);
+    });
+    Informations.find({}, (err,users)=>{
+        console.log(users);
+    })
 })
 
 

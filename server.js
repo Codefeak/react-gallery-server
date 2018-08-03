@@ -91,7 +91,7 @@ app.post('/login/addNew', (req,res)=>{
 })
 
 app.delete('/login/delete', (req,res)=>{
-    console.log('body', req.body);
+    console.log('body', req.body._id);
     
     Informations.deleteOne({ _id:req.body._id }, (err, user)=>{
         if(err)console.log('err', err);

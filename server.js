@@ -81,7 +81,6 @@ app.post('/login', (req,res)=>{
 });
 
 app.post('/login/addNew', (req,res)=>{
-    console.log('inserted',req.body);
     Informations.create(req.body, (err,user)=>{
         if(err)console.log('err', err);
         console.log('inserted',req.body);

@@ -89,17 +89,17 @@ app.post('/login/addNew', (req,res)=>{
     })
 })
 
-app.delete('/login/delete', (req,res)=>{
-    const tmp = req.body.map(item=>{
+app.delete('/login/delete', (req,res,next)=>{
+    req.body.map(item=>{
         Informations.deleteOne({ _id:item._id }, (err, user)=>{
             if(err)console.log('err', err);
+        })
+        next();
         })
         Informations.find({}, (err,users)=>{
             console.log(informations)
             return(res.json(users));
         })
-        })
-    
     })
 
 

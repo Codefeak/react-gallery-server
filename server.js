@@ -91,18 +91,11 @@ app.post('/login/addNew', (req,res)=>{
 })
 
 app.delete('/login/delete', (req,res)=>{
-    Informations.findOneAndRemove({}, (err,user)=>{
-        if(err){console.log(err);}
-        user.map(item=>{
-            console.log('item', item);
-            if(item._id === req.body._id){
-                return item;
-            }
+    console.log('body', req.body);
+    Informations.findOneAndRemove({_id:req.body._id}, (err, user)=>{
+        if(err)console.log('err', err);
+            return(res.json(user));
         })
-    })
-    
-        return(res.json(user));
-
     })
 
 

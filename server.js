@@ -86,8 +86,9 @@ app.post('/login', (req,res)=>{
 
 app.post('/login/profile/:id',(req,res)=>{
     console.log('req', req.body)
-    Informations.find({_id:req.body}, (err,user)=>{
+    Informations.findOne({_id:req.body}, (err,user)=>{
         if(err)console.log(err);
+        console.log(user)
         return (res.json(user));
     })
 })

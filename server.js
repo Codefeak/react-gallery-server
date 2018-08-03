@@ -82,7 +82,7 @@ app.post('/login', (req,res)=>{
 
 app.post('/login/addNew', (req,res)=>{
     console.log('inserted',req.body);
-    Information.insertOne(req.body, (err,user)=>{
+    Information.insertOne({req.body}, (err,user)=>{
         if(err)console.log('err', err);
         console.log('inserted',req.body);
     });

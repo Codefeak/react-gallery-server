@@ -96,10 +96,11 @@ app.delete('/login/delete', (req,res)=>{
         Informations.deleteOne({ _id:item._id }, (err, user)=>{
             if(err)console.log('err', err);
             })
-    })
-    Informations.find({}, (err,users)=>{
-        return(res.json(users));
+            Informations.find({}, (err,users)=>{
+                return(res.json(users));
+            })
         })
+    
     })
 
 

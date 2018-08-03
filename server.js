@@ -89,17 +89,16 @@ app.post('/login/addNew', (req,res)=>{
     })
 })
 
-app.delete('/login/delete', (req,res,next)=>{
+app.delete('/login/delete', (req,res)=>{
     req.body.map(item=>{
         Informations.deleteOne({ _id:item._id }, (err, user)=>{
             if(err)console.log('err', err);
         })
-        // next();
-        })
-        Informations.find({}, (err,users)=>{
-            return(res.json(users));
-        })
     })
+    Informations.find({}, (err,users)=>{
+        return(res.json(users));
+    })
+})
 
 
 

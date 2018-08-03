@@ -80,19 +80,6 @@ app.post('/login', (req,res)=>{
     });
 });
 
-// app.post('/login/:user', (req,res)=>{
-
-// })
-
-    // app.post('/login/profile/:id',(req,res)=>{
-    //     console.log('params', req.params)
-    //     Informations.findOne({_id:req.body}, (err,user)=>{
-    //         if(err)console.log(err);
-    //         console.log(user);
-    //         return (res.json(user));
-    //     })
-    // })
-
 app.post('/login/addNew', (req,res)=>{
     Informations.create(req.body, (err,user)=>{
         if(err)console.log('err', err);

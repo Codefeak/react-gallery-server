@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
+const multer = require('multer');
+const fileUpload = require('express-fileupload');
 const port = process.env.PORT || 5000;
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://ProblemChild:bzz4uu8eDU@ig001-nt7pi.mongodb.net/UserList", { useNewUrlParser: true });
@@ -9,7 +11,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://ProblemChild:bzz4uu8e
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-
+app.use(fileUpload());
+app.use('/images', express.static(__dirname + '/assets/images'));
 
 const schema = {
     username: {
@@ -62,7 +65,23 @@ const schema1 = {
 const User = mongoose.model('User', schema);
 const Informations = mongoose.model('Informations', schema1);
 
+  /**
+    * Multer config for file upload
+  */
+    const storage = multer.memoryStorage();
+    const upload = multer({ storage :storage });
 
+app.post('/login/addNew/upload', upload.single('file'), (req,res)=>{
+    if(!req.files){
+        return res.send(400).send('No files were uploaded');
+    }
+    console.log(req.files);
+    req.files.file.mv(`./assets/images/thumbnails/${req.files.file.name}`, err=>{
+        if(err)return res.status(500).send(err);
+        res.send('File Uploaded');
+    });
+});
+  
 app.get('/api', (req, res) => {
     Informations.find({}, (err, info) => {
         if (err) console.log(err);
@@ -102,8 +121,6 @@ app.post('/login/addNew', (req, res) => {
     })
 });
 
-
-
 app.delete('/login/delete', (req, res) => {
     req.body.map(item => {
         Informations.deleteOne({ _id: item._id }, (err, user) => {
@@ -114,8 +131,6 @@ app.delete('/login/delete', (req, res) => {
         return (res.json(users));
     })
 });
-
-
 
 app.listen(port, () => {
     console.log(`Listening to port ${port}`);

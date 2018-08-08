@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(fileUpload());
 app.use('/images', express.static(path.join(__dirname + '/assets/images')));
-app.use(express.static(path.join(__dirname, 'client','build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 const schema = {

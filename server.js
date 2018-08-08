@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(fileUpload());
 app.use('/images', express.static(path.join(__dirname + '/assets/images')));
-app.use(express.static(path.join(__dirname, '/client','build')));
+app.use(express.static(path.join(__dirname, 'client','build')));
 
 
 const schema = {
@@ -68,11 +68,12 @@ const schema1 = {
 const User = mongoose.model('User', schema);
 const Informations = mongoose.model('Informations', schema1);
 
-  /**
-    * Multer config for file upload
-  */
-    const storage = multer.memoryStorage();
-    const upload = multer({ storage :storage });
+/**
+ * Multer config for file upload
+ */
+const storage = multer.memoryStorage();
+const upload = multer({ storage :storage });
+
 
 app.post('/login/addNew/upload', upload.single('file'), (req,res)=>{
     if(!req.files){
@@ -85,6 +86,9 @@ app.post('/login/addNew/upload', upload.single('file'), (req,res)=>{
     });
 });
 
+app.get('*',(req, res) =>{
+    res.sendFile(path.join(__dirname, 'client','build','index.html'))
+});
 
 app.get('/api', (req, res) => {
     Informations.find({}, (err, info) => {
@@ -136,9 +140,6 @@ app.delete('/login/delete', (req, res) => {
     })
 });
 
-// app.get('/',(req, res) =>{
-//     res.sendFile(path.join(__dirname, '/client','build','index.html'))
-// });
 
 app.listen(port, () => {
     console.log(`Listening to port ${port}`);

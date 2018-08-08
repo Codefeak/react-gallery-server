@@ -86,8 +86,8 @@ app.post('/login/addNew/upload', upload.single('file'), (req,res)=>{
     });
 });
 
-app.get('*',(req, res) =>{
-    res.sendFile(path.join(__dirname, 'client','build','index.html'))
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, 'client','build','index.html'));
 });
 
 app.get('/api', (req, res) => {

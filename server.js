@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
 const fileUpload = require('express-fileupload');
+const path = require('path');
 const port = process.env.PORT || 5000;
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://ProblemChild:bzz4uu8eDU@ig001-nt7pi.mongodb.net/UserList", { useNewUrlParser: true });
@@ -13,6 +14,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(fileUpload());
 app.use('/images', express.static(__dirname + '/assets/images'));
+app.use(express.static(path.join(__dirname, '/galleryClient','build')))
+
 
 const schema = {
     username: {
@@ -81,7 +84,8 @@ app.post('/login/addNew/upload', upload.single('file'), (req,res)=>{
         res.send('File Uploaded');
     });
 });
-  
+
+
 app.get('/api', (req, res) => {
     Informations.find({}, (err, info) => {
         if (err) console.log(err);
@@ -99,7 +103,7 @@ app.post('/login', (req, res) => {
             }
         })
     });
-
+    
 });
 
 app.get('/login/images/:id', (req, res) => {
@@ -131,6 +135,8 @@ app.delete('/login/delete', (req, res) => {
         return (res.json(users));
     })
 });
+
+app.get('*',(req, res) => res.sendFile(path.join(__dirname, '/galleryClient','build','index.html')));
 
 app.listen(port, () => {
     console.log(`Listening to port ${port}`);

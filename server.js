@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(fileUpload());
 app.use('/images', express.static(path.join(__dirname + '/assets/images')));
-app.use('/build', express.static(path.join(__dirname, '/client/build')));
+app.use( express.static(path.join(__dirname, 'build')));
 
 
 const schema = {
@@ -137,9 +137,8 @@ app.delete('/login/delete', (req, res) => {
     })
 });
 
-app.get('*', (req, res)=>{
-    // res.sendFile(path.join(__dirname +'/build/index.html'));
-    res.sendFile(path.join(__dirname +'C:\Users\ProblemPC\Documents\mongo\ReactGalleryServer\client\build\index.html'));
+app.get('/*', (req, res)=>{
+    res.sendFile(path.join(__dirname,'build','index.html'));
     
 });
 
